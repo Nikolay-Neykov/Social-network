@@ -1,0 +1,22 @@
+<section ng-controller="EventsController" ng-init="find()">
+  <div class="page-header">
+    <h1>Events</h1>
+  </div>
+  <!--<button type="button" class="btn btn-success btn-lg" aria-haspopup="true" aria-expanded="false" ui-sref="events.create">Create one</button>-->
+  <!--<div ng-dropdown-multiselect="" id="event" options="events" selected-model="example1model">Select</div>-->
+  <div class="list-group">
+    <a ng-repeat="event in events" ui-sref="events.view({eventId: event.id})" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="event.descrpition | date:'mediumDate'"></span>
+        by
+        <span ng-bind="event.name"></span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="event.name"></h4>
+      <p class="list-group-item-text" ng-bind="event.description"></p>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="events.$resolved && !events.length">
+    No events yet, why don't you <a ui-sref="events.create">create one</a>?
+  </div>
+</section>

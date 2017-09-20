@@ -1,0 +1,15 @@
+.event-panel-element{
+    display: inline-block;
+    padding-right: 10px;
+}
+.event-panel{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    max-height: 400px;
+}
+.event-panel-body{
+    width: 2000px;
+}
+.event-description{
+    max-width: 250px;
+}

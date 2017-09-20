@@ -1,0 +1,29 @@
+<section ng-controller="EventsController" ng-init="findOne()">
+  <div class="page-header">
+    <h1 ng-bind="event.name"></h1>
+  </div>
+  <div class="pull-right" ng-show="authentication.user._id == event.user._id">
+    <a class="btn btn-primary" ui-sref="events.edit({eventId: event.id})">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="remove();">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Will happen on
+      <span ng-bind="event.time | date:'mediumDate'"></span>
+      <!--by-->
+      <!--<span ng-bind="event.location.name"></span>-->
+    </em>
+  </small>
+  <p class="lead" ng-bind="event.name"></p>
+  <div class="container-fluid">
+    <img ng-src="modules/locations/client/img/events/{{event.imageUrl}}" style="width: 50%; height: 50%;">
+  </div>
+  <h2>Groups for this Event</h2>
+  <ul class="list-group">
+    <a ui-sref="groups.view({groupId: group.id})" class="list-group-item" ng-repeat="group in event.userGroups">{{group.name}}</a>
+  </ul>
+</section>

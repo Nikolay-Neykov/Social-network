@@ -1,0 +1,48 @@
+<section ng-controller="EventsController" ng-init="findOne(true)">
+  <div class="page-header">
+    <h1>Edit Event</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="eventForm" class="form-horizontal" ng-submit="update(eventForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="name">Name</label>
+          <input name="name" type="text" ng-model="event.name" id="name" class="form-control" placeholder="Name" required>
+          <div ng-messages="eventForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Event name is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="time">Time</label>
+          <textarea name="content" ng-model="event.description" id="time" class="form-control" cols="30" rows="10" placeholder="Time">
+          </textarea>
+        </div>
+        <div class="form-group">
+          <label for="location">Location</label>
+          <div class="input-group">
+            <div ng-dropdown-multiselect="" id="location" options="locations" selected-model="[event.location]"
+                 extra-settings="{selectionLimit: 1, showUncheckAll: false, styleActive: true, displayProp: 'name', enableSearch: true}"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="category">Categories</label>
+          <div class="input-group">
+            <div ng-dropdown-multiselect="" id="category" options="categories" selected-model="event.categories"
+                 extra-settings="{styleActive: true, displayProp: 'name', enableSearch: true}"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea name="content" ng-model="event.description" id="description" class="form-control" cols="30" rows="10" placeholder="Description">
+          </textarea>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Update" class="btn btn-success">
+        </div>
+        <div ng-show="error" class="text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

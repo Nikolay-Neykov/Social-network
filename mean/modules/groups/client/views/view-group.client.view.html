@@ -1,0 +1,54 @@
+<section ng-controller="GroupsController" ng-init="findOne()">
+  <div class="pull-right" ng-show="authentication.user._id == group.owner.id">
+    <a class="btn btn-primary" ui-sref="groups.edit({groupId: group.id})">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="remove();">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <div class="page-header">
+    <h1 ng-bind="group.name"></h1>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted
+      <!--<span ng-bind="group.description | date:'mediumDate'"></span>-->
+      by
+      <span ng-bind="group.name"></span>
+    </em>
+  </small>
+  <div class="panel panel-default event-panel">
+    <div class="panel-body event-panel-body">
+      <span class="event-panel-element" ng-repeat="event in group.events">
+        <h4>{{event.name}}</h4>
+        <div class="event-description">{{event.description}}</div>
+        <div ng-bind="event.time | date:'MM/dd/yyyy \'at\' h:mma'"></div>
+        <a ui-sref="events.view({eventId: event.id})">
+          <img ng-src="modules/locations/client/img/events/{{event.imageUrl}}" height="250em" width="250px">
+        </a>
+      </span>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Users</div>
+
+    <ul class="list-group">
+      <li ng-repeat="user in displayUsers" class="list-group-item">{{user.username}}</li>
+      <li class="list-group-item">
+        <div class="dropdown" ng-class="open">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Username..." ng-model="selectedUser.username" ng-change="onSelectUser(this)"/>
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" ng-click="onInviteUser()">Invite User</button>
+            </span>
+          </div>
+          <ul class="dropdown-menu">
+            <li ng-repeat="user in foundUsers"><a ng-click="onUserClick(user)">{{user.username}}</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

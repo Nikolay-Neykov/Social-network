@@ -1,0 +1,50 @@
+<section ng-controller="LocationsController" ng-init="findOne()">
+  <div class="page-header">
+    <h1>Edit Location</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="locationForm" class="form-horizontal" ng-submit="update(locationForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="name">Name</label>
+          <input name="name" type="text" ng-model="location.name" id="name" class="form-control" placeholder="Name" required>
+          <div ng-messages="locationForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Location name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="latitude">Latitude</label>
+          <div class="input-group">
+            <input id="latitude" name="latitude" ng-model="location.latitude" type="text" placeholder="00.00" class="form-control" aria-label="Amount (to the nearest dollar)">
+            <span class="input-group-addon">.00</span>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="longitude">Longitude</label>
+          <div class="input-group">
+            <input type="text" id="longitude" name="longitude" ng-model="location.longitude" placeholder="00.00" class="form-control" aria-label="Amount (to the nearest dollar)">
+            <span class="input-group-addon">.00</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="category">Categories</label>
+          <div class="input-group">
+            <div ng-dropdown-multiselect="" id="category" options="categories" selected-model="location.categories"
+                 extra-settings="{styleActive: true, displayProp: 'name', enableSearch: true}"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea name="content" ng-model="location.description" id="description" class="form-control" cols="30" rows="10" placeholder="Description">
+          </textarea>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Update" class="btn btn-default">
+        </div>
+        <div ng-show="error" class="text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
